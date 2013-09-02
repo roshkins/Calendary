@@ -10,5 +10,15 @@
 
 <%= yield %>
 
+<% if logged_in? %>
+	<form method="POST" action="<%= session_url %>">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<input type="hidden" name="_method" value="DELETE">
+		<input type="submit" value="log out">
+	</form>	
+<% else %>
+	<%= link_to "Log In", new_session_url %>
+<% end %>
+
 </body>
 </html>
