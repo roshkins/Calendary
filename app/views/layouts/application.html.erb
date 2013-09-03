@@ -8,17 +8,32 @@
 </head>
 <body>
 
-<%= yield %>
-
-<% if logged_in? %>
+<div class="header"><% if logged_in? %>
 	<form method="POST" action="<%= session_url %>">
 		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 		<input type="hidden" name="_method" value="DELETE">
-		<input type="submit" value="log out">
+		<input type="submit" class="logout" value="log out">
 	</form>	
 <% else %>
-	<%= link_to "Log In", new_session_url %>
+	<ul> 
+		<li><%= link_to "Log In", new_session_url %></li>
+		<li><%= link_to "Create User", new_user_url %></li>
+	</ul>
+<% end %></div>
+
+<% if flash[:errors] %>
+	<div id="errors">
+		<ul>
+			<% flash[:errors].each do |error| %>
+				<li><%= error %></li>
+			<% end %>
+		</ul>
+	</div>
 <% end %>
+
+<%= yield %>
+
+
 
 </body>
 </html>

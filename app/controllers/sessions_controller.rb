@@ -8,6 +8,8 @@ class SessionsController < ApplicationController
 		if user = User.fetch_valid_user(params[:user])
 			login(user)
 			redirect_to :root
+		else
+			redirect_to new_session_url, :status => :unauthorized
 		end
 	end
 

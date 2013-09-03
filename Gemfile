@@ -12,8 +12,10 @@ gem 'figaro'
 group :development do
 	gem 'binding_of_caller'
 	gem 'better_errors'
+	gem 'rename'
 end
 
+	gem 'backbone-on-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -25,6 +27,8 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'pry-rails'
 
 gem 'jquery-rails'
 

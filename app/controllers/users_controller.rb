@@ -6,12 +6,12 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		user = User.new(params[:user])
-		if user.save
-			user.session_token!
+		@user = User.new(params[:user])
+		if @user.save
+			login(@user)
 			redirect_to :root
 		else
-			flash.now[:error] ||= user.errors.full_messages
+			flash.now[:errors] = @user.errors.full_messages
 			render :new
 		end
 	end
@@ -20,6 +20,10 @@ class UsersController < ApplicationController
 		current_user.destroy
 		@user = current_user
 		render :new
+	end
+
+	def show
+		render :json => current_user
 	end
 
 end

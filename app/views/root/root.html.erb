@@ -1,2 +1,6 @@
-<h1>Calendary!</h1>
-<h2>Welcome <%= current_user.username.capitalize %>!</h2>
+<div class="toolbar"> Agenda | Weekly | Monthly </div>
+<div id="calendar"></div>
+
+<script type="text/javascript">
+	Calendary.current_user = new Calendary.Models.User(<%= current_user.to_json.html_safe %>, {parse: true})
+</script>

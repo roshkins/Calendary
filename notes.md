@@ -1,14 +1,14 @@
- * SecureRandom.urlsafe_Base64
- * build in "slices" meaning build feature by feature
+* SecureRandom.urlsafe_Base64
+* build in "slices" meaning build feature by feature
 
- # Color Scheme: http://colorschemedesigner.com/#0T31yeJ--w0w0, also check out the Color Palette html file.
+# Color Scheme: http://colorschemedesigner.com/#0T31yeJ--w0w0, also check out the Color Palette html file.
 
- * Users
- 	* have many Calendars
+* Users
+	* have many Calendars
 	 	* Has title:string
 	 	* Has color:string
 	 	* Has description:text
-	 	* belongs_to user
+
 	 	* have many events
 	 		* title:string
 	 		* start:date_time
@@ -24,5 +24,11 @@
 	 			* delay:integer
 	 			* unit:string (choice: minutes|hours|days|weeks)
 	 		* have many guests (users)
-	 	* Share this calendar with user
+	 	* belongs to many users
 	 		* permission settings (See all event details | Make Changes to events)
+
+
+## TODO
+
+1. Show calendar on page
+2. All calendars are going to be bootstrapped with the user. Still can be fetched manually through /calendars/ though.

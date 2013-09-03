@@ -1,11 +1,13 @@
-<form method="POST" action="<%= session_url %>" class="form">
-	<label for="user_username">Username</label>
-	<br>
-	<input type="text" id="user_username" name="user[username]">
-	<br>
-	<label for="user_password">Password</label>
-	<br>
-	<input type="password" id="user_password" name="user[password]">
-	<br>
-	<input type="submit" value="Login">
-</form>
+<div class="login">
+	<form method="POST" action="<%= session_url %>" class="form">
+		<label for="user_username">Username</label>
+		<br>
+		<input type="text" id="user_username" name="user[username]">
+		<br>
+		<label for="user_password">Password</label>
+		<br>
+		<input type="password" id="user_password" name="user[password]">
+		<br>
+		<input type="submit" value="Login">
+	</form>
+</div>
