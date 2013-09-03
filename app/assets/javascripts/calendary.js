@@ -5,9 +5,15 @@ window.Calendary = {
   Routers: {},
   initialize: function() {
   	$calendarEl = $("#calendar");
-  	new Calendary.Routers.Calendars($calendarEl);
+    $indexEl = $("#calendar_index");
+
+    var current_user_calendars = Calendary.current_user.get("calendars");
+    var calendarsIndex = new Calendary.Views.CalendarsIndex(
+      {el: $indexEl, collection: current_user_calendars});
+  	calendarsIndex.render(); 
+    new Calendary.Routers.Calendars($calendarEl);
   	Backbone.history.start();
-  	Backbone.history.navigate("agenda");
+  	Backbone.history.navigate("calendar/agenda/" + current_user_calendars.at(0).id);
   }
 };
 

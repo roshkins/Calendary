@@ -1,0 +1,9 @@
+Choose or create your calendar:
+<select id="calendar_chooser">
+<% calendars.each(function(calendar){ %>
+	<option value="<%= calendar.id %>"><%= calendar.escape("title") %>
+	</option>
+	<% }); %>
+	<option disabled="disabled">----------------</option>
+	<option value="create">Create Calendar</option>
+</select>

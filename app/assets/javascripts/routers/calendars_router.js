@@ -1,14 +1,15 @@
 Calendary.Routers.Calendars = Backbone.Router.extend({
 
 	routes: {
-		"agenda": "agenda"
+		"calendar/agenda/:id": "agenda"
 	},
 	initialize: function($calEl) {
 		this.$calEl = $calEl;
 	},
 
-	agenda: function () {
-		var agendaView = new Calendary.Views.CalendarsAgenda({el: this.$calEl[0]});
+	agenda: function (id) {
+		var selectedCalendar = Calendary.current_user.get("calendars").get(id);
+		var agendaView = new Calendary.Views.CalendarsAgenda({el: this.$calEl[0], model: selectedCalendar });
 		agendaView.render();
 	}
 });
