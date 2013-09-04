@@ -24,11 +24,15 @@
 
 <% if flash[:errors] %>
 	<div id="errors">
+		<% if flash[:errors].class == Array %>		
 		<ul>
 			<% flash[:errors].each do |error| %>
 				<li><%= error %></li>
 			<% end %>
 		</ul>
+		<% else %>
+			<%= flash[:errors] %>
+		<% end %>
 	</div>
 <% end %>
 

@@ -18,7 +18,7 @@ Calendary.Views.CalendarsNew = Backbone.View.extend({
 		var calendar = $(event.currentTarget).serializeJSON().calendar;
 		calendar.user_id = Calendary.current_user.id;
 		var newCal = this.collection.create(calendar, {success: function(){
-			Backbone.history.navigate("calendar/agenda/" + newCal.id, {trigger: true});
+			Backbone.history.navigate("calendar/" + newCal.id + "/agenda/", {trigger: true});
 		}});
 	}
 });

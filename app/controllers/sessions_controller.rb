@@ -9,7 +9,8 @@ class SessionsController < ApplicationController
 			login(user)
 			redirect_to :root
 		else
-			redirect_to new_session_url, :status => :unauthorized
+			flash[:errors] = "Username or password incorrect."
+			redirect_to new_session_url
 		end
 	end
 
