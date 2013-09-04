@@ -22,7 +22,7 @@ class CalendarsController < ApplicationController
 	end
 
 	def update
-		calendar = Calendar.find(params[:id])
+		calendar = current_user.calendars.find(params[:id])
 		if calendar.update_attributes(params[:calendar])
 			render :json => calendar
 		else
@@ -31,7 +31,7 @@ class CalendarsController < ApplicationController
 	end
 
 	def destroy
-		calendar = current_user.calendar.find(params[:id])
+		calendar = current_user.calendars.find(params[:id])
 		if calendar.destroy
 			render :json => calendar
 		else

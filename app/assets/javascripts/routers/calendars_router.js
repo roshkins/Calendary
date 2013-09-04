@@ -10,14 +10,15 @@ Calendary.Routers.Calendars = Backbone.Router.extend({
 
 	agenda: function (id) {
 		var selectedCalendar = Calendary.current_user.get("calendars").get(id);
-		var agendaView = new Calendary.Views.CalendarsAgenda({el: this.$calEl[0], model: selectedCalendar });
-		agendaView.render();
+		var agendaView = new Calendary.Views.CalendarsAgenda(
+			{model: selectedCalendar });
+		this.$calEl.html(agendaView.render().$el);
 	},
 
 	calendarNew: function() {
 		var collection = Calendary.current_user.get("calendars");
 		var calendarsNewView = new Calendary.Views.CalendarsNew(
-			{el: this.$calEl[0], collection: collection});
-		calendarsNewView.render();
+			{collection: collection});
+		this.$calEl.html(calendarsNewView.render().$el);
 	}
 });

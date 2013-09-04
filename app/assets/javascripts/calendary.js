@@ -13,7 +13,12 @@ window.Calendary = {
   	calendarsIndex.render(); 
     new Calendary.Routers.Calendars($calendarEl);
   	Backbone.history.start();
-  	Backbone.history.navigate("calendar/agenda/" + current_user_calendars.at(0).id);
+    if (current_user_calendars.length == 0)
+    {
+      Backbone.history.navigate("calendar/new", {trigger: true});
+    } else {
+  	 Backbone.history.navigate("calendar/agenda/" + current_user_calendars.at(0).id, {trigger: true});
+    }
   }
 };
 

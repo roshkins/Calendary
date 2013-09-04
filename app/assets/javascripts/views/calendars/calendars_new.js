@@ -9,6 +9,7 @@ Calendary.Views.CalendarsNew = Backbone.View.extend({
 		var emptyCal = new Calendary.Models.Calendar();
 		var content = this.template({calendar: emptyCal});
 		this.$el.html(content);
+		return this;
 	},
 
 	formSubmit: function(event) {
