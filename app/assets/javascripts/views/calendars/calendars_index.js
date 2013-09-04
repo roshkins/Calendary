@@ -24,7 +24,7 @@ Calendary.Views.CalendarsIndex = Backbone.View.extend({
 		if(selectedText === "new") {
 			Backbone.history.navigate("/calendar/new", {trigger: true});
 		} else if (!isNaN(parseInt(selectedText))) {
-			Backbone.history.navigate("/calendar/agenda/" + selectedText, {trigger: true});
+			Backbone.history.navigate("/calendar/" + selectedText + "/agenda/", {trigger: true});
 		}
 	}
 });

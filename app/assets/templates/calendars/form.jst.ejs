@@ -1,4 +1,6 @@
-<h1>Create Calendar</h1>
+<% var wording = calendar.isNew() ? "Create" : "Edit" %>
+
+<h1><%= wording %> Calendar</h1>
 
 <form id="create_calendar_form">
 	<label for="calendar_title">Title</label>
@@ -16,6 +18,6 @@
 	calendar.escape("description")
 	 %></textarea>
 	 <br>
-	 <input type="submit" value="Create Calendar">
+	 <input type="submit" value="<%= wording %> Calendar">
 
 </form>

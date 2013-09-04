@@ -17,7 +17,7 @@ window.Calendary = {
     {
       Backbone.history.navigate("calendar/new", {trigger: true});
     } else {
-  	 Backbone.history.navigate("calendar/agenda/" + current_user_calendars.at(0).id, {trigger: true});
+  	 Backbone.history.navigate("calendar/" + current_user_calendars.at(0).id + "/agenda/", {trigger: true});
     }
   }
 };
