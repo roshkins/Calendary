@@ -1,0 +1,21 @@
+<h1>Create Calendar</h1>
+
+<form id="create_calendar_form">
+	<label for="calendar_title">Title</label>
+	<br>
+	<input type="text" id="calendar_title" name="calendar[title]" value="<%= calendar.escape("title") %>">
+	<br>
+	<label for="calendar_color">Color</label>
+	<br>
+	<input type="color" id="calendar_color" name="calendar[color]" value="<%= calendar.escape("color") %>">
+	<br>
+
+	<label for="calendar_description">Description</label>
+	<br>
+	<textarea id="calendar_description" name="calendar[description]"><%= 
+	calendar.escape("description")
+	 %></textarea>
+	 <br>
+	 <input type="submit" value="Create Calendar">
+
+</form>

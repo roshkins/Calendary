@@ -10,15 +10,21 @@ Calendary.Views.CalendarsIndex = Backbone.View.extend({
 		return this;
 	},
 
+	initialize: function() {
+		this.listenTo(this.collection, "add", this.render);
+		this.listenTo(this.collection, "remove", this.render);
+		this.listenTo(this.collection, "change", this.render);
+	},
+
 	choose_calendar: function(event) {
 		var selectedValue = "";
 		$(event.currentTarget).find("option:selected").each(function () {
 			selectedText = $(this).val();
 		});
-		if(selectedText === "create") {
-			Backbone.history.navigate("/calendar/create");
+		if(selectedText === "new") {
+			Backbone.history.navigate("/calendar/new", {trigger: true});
 		} else if (!isNaN(parseInt(selectedText))) {
-			Backbone.history.navigate("/calendar/agenda/" + selectedText);
+			Backbone.history.navigate("/calendar/agenda/" + selectedText, {trigger: true});
 		}
 	}
 });

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :password_digest, :presence => {:message => "must have one word character and one number"}
   validates :username, :uniqueness => true
 
-  has_many :user_calendars
+  has_many :user_calendars, :dependent => :destroy
 
   has_many :calendars, :through => :user_calendars, :source => :calendar
 

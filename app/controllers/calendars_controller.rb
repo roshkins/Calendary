@@ -5,11 +5,19 @@ class CalendarsController < ApplicationController
 	end
 
 	def create
-		calendar = Calendar.new(params[:calendar])
-		if calendar.save
+			calendar = Calendar.new(params[:calendar])		
+		begin
+			ActiveRecord::Base.transaction do
+				calendar.save!
+				user_calendar = 
+				UserCalendar.new(:calendar_id => calendar.id,
+								 :user_id => current_user.id,
+								 :permission_setting => "make changes to events")
+				user_calendar.save!
+			end
 			render :json => calendar
-		else
-			render :json => calendar.errors.full_messages
+		rescue
+			render :json => calendar.errors.full_messages, :status => 422
 		end
 	end
 
