@@ -1,5 +1,6 @@
 <div class="login">
 	<form method="POST" action="<%= session_url %>" class="form">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 		<label for="user_username">Username</label>
 		<br>
 		<input type="text" id="user_username" name="user[username]">

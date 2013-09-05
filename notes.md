@@ -17,7 +17,7 @@
 	 		* location:string
 	 		* belongs_to calendar
 	 		* description:text
-	 		* attachment:file
+	 		* attachment:string (file)
 	 		* color:string
 	 		* have many reminders
 	 			* type:string (choice: pop-up (desktop notification)||SMS||Email)
@@ -35,3 +35,7 @@
 	2. Allow calendar creation
 	3. All calendars are going to be bootstrapped with the user. Still can be fetched manually through /calendars/ though.
 2. Show list of calendars
+
+## Debugging tips
+
+* Did you forget a new?

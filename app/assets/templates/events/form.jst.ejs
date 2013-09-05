@@ -1,0 +1,62 @@
+<form id="event_form" class="form">
+	<label for="event_title">Title</label>
+	<br>
+	<input type="text" id="event_title" name="event[title]" 
+	value="<%= event.title %>">
+	<br>
+	<label for="event_start_time">Start Date and Time</label>
+	<br>
+	<input type="datetime-local" id="event_start_time" name="event[start_time]"
+	 value="<%= event.start_time %>">
+	<br>
+	<label for="event_end_time"></label>
+	<br>
+	<input type="datetime-local" id="event_end_time" name="event[end_time]" 
+	value="<%= event.end_time %>">
+	<br>
+	<input type="hidden" name="event[all_day]" value="false">
+	<label for="event_all_day">All day?</label>
+	<input type="checkbox" id="event_all_day" name="event[all_day]" value="true" 
+	"<%= event.all_day ? 'checked=checked' : "" %>">
+	<br>
+	<label for="event_location">Where</label>
+	<br>
+	<input type="text" id="event_location" name="event[location]" 
+	value="<%= event.location %>">
+	<br>
+	Select Calendar to add to
+:	<select name="event[calendar_id]">
+	<% Calendary.current_user.get("calendars").each(function(calendar){ %>
+		<option 
+		value="<%= calendar.id %>"><%= calendar.escape("title") %></option>
+		<% }); %>
+	</select>
+	<br>
+	<label for="event_description">Description</label>
+	<br>
+	<textarea id="event_description" 
+	name="event[description]"><%= event.description %></textarea>
+	<br>
+
+	<script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js">
+	</script>
+	<input type="filepicker-dragdrop" 
+	data-fp-apikey="AZMO1sQTmTEKZLg2IKSOAz" 
+	data-fp-mimetypes="*/*" id="attachment" data-fp-container="modal"
+	onchange="event.fpfile.url">
+
+	<label for="event_color">Event Color</label>
+	<br>
+	<input type="color" id="event_color" name="event[color]"
+	value="<%= event.color || currentColor %>">
+	<br>
+
+	<!-- /* @TODO: 
+		1. Reminders
+		2. Privacy options
+		3. Guests
+		4. Discarding
+		5. Not discarding and exiting or pressing back shows modal
+	*/ -->
+	<input type="submit" value="SAVE">
+</form>

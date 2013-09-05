@@ -2,7 +2,8 @@ Calendary.Views.CalendarsIndex = Backbone.View.extend({
 	template: JST["calendars/index"],
 
 	events: {
-		"change #calendar_chooser": "choose_calendar"
+		"change #calendar_chooser": "choose_calendar",
+		"click #newEvent": "newEvent"
 	},
 	render: function() {
 		var content = this.template({calendars: this.collection});
@@ -26,5 +27,10 @@ Calendary.Views.CalendarsIndex = Backbone.View.extend({
 		} else if (!isNaN(parseInt(selectedText))) {
 			Backbone.history.navigate("/calendar/" + selectedText + "/agenda/", {trigger: true});
 		}
+	},
+
+	newEvent: function (event) {
+		event.preventDefault();
+		Backbone.history.navigate("events/new", {trigger: true});	
 	}
 });

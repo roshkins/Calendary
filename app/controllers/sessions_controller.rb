@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
 	def new
-		render :new
+		unless current_user
+			render :new
+		else
+			redirect_to :root
+		end
 	end
 
 	def create

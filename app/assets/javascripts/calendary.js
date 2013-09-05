@@ -13,15 +13,20 @@ window.Calendary = {
   	calendarsIndex.render(); 
     new Calendary.Routers.Calendars($calendarEl);
   	Backbone.history.start();
-    if (current_user_calendars.length == 0)
-    {
-      Backbone.history.navigate("calendar/new", {trigger: true});
-    } else {
-  	 Backbone.history.navigate("calendar/" + current_user_calendars.at(0).id + "/agenda/", {trigger: true});
+
+    if (Backbone.history.fragment == "") {
+      if (current_user_calendars.length == 0)
+      {
+        Backbone.history.navigate("calendar/new", {trigger: true});
+      } else {
+    	 Backbone.history.navigate("calendar/" + current_user_calendars.at(0).id + "/agenda/", {trigger: true});
+      }
     }
   }
 };
 
 $(document).ready(function(){
-  Calendary.initialize();
+  if (window.location.pathname === "/" || window.location.pathname === ""){
+    Calendary.initialize();
+  }
 });

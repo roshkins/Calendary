@@ -13,6 +13,9 @@ group :development do
 	gem 'binding_of_caller'
 	gem 'better_errors'
 	gem 'rename'
+	gem 'annotate', ">=2.5.0"
+	gem 'pry-rails'
+	gem 'quiet_assets'
 end
 
 	gem 'backbone-on-rails'
@@ -28,13 +31,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'pry-rails'
+gem 'chronic'
 
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
-
+gem 'filepicker-rails'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

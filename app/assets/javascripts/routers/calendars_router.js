@@ -3,7 +3,9 @@ Calendary.Routers.Calendars = Backbone.Router.extend({
 	routes: {
 		"calendar/:id/agenda/": "agenda",
 		"calendar/new": "calendarNew",
-		"calendar/:id/edit": "calendarEdit"
+		"calendar/:id/edit": "calendarEdit",
+
+		"events/new": "eventsNew"
 	},
 	initialize: function ($calEl) {
 		this.$calEl = $calEl;
@@ -36,5 +38,10 @@ Calendary.Routers.Calendars = Backbone.Router.extend({
 		var calendarsEditView = new Calendary.Views.CalendarsEdit(
 			{model: selectedCalendar});
 		this.swapCurrentView(calendarsEditView);
+	},
+
+	eventsNew: function () {
+		var eventsNewView = new Calendary.Views.EventsNew();
+		this.swapCurrentView(eventsNewView);
 	}
 });
