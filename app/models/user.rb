@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   has_many :calendars, :through => :user_calendars, :source => :calendar
 
   def as_json(params)
-    super(params.merge(:include => [:calendars], :except => [:password_digest, :session]))
+    super(params.merge(:include => [:calendars => {:include => :events}], :except => [:password_digest, :session]))
   end
 
   def password= plain_text

@@ -39,3 +39,4 @@
 ## Debugging tips
 
 * Did you forget a new?
+* Sub-inheritance as_json: http://stackoverflow.com/questions/4443218/ror-nested-include-to-include-sub-resources-in-to-xml-to-json
