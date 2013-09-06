@@ -7,12 +7,12 @@
 	<label for="event_start_time">Start Date and Time</label>
 	<br>
 	<input type="datetime-local" id="event_start_time" name="event[start_time]"
-	 value="<%= event.start_time %>">
+	 value="<%= (event.start_time) ? event.start_time.slice(0, -1) : "" %>">
 	<br>
 	<label for="event_end_time"></label>
 	<br>
 	<input type="datetime-local" id="event_end_time" name="event[end_time]" 
-	value="<%= event.end_time %>">
+	value="<%= (event.end_time) ? event.end_time.slice(0, -1) : "" %>">
 	<br>
 	<input type="hidden" name="event[all_day]" value="false">
 	<label for="event_all_day">All day?</label>
@@ -58,5 +58,5 @@
 		4. Discarding
 		5. Not discarding and exiting or pressing back shows modal
 	*/ -->
-	<input type="submit" value="SAVE">
+	<input type="submit" id="submit_button" value="SAVE">
 </form>

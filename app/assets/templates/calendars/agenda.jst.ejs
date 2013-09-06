@@ -1,12 +1,6 @@
 <h1>Agenda for calendar <span style="color:<%= calendar.escape("color") %>;"> <%= calendar.escape("title") %> </span></h1>
 
-<ul>
-	<% calendar.get("events").each(function(event){ %>
-		<li>
-		<% eventView = new 
-		Calendary.Views.EventsAgendaShow({model: event}); %>
-		<%= eventView.render().$el.html() %>
-	<% }); %>
+<ul id="agendaList">
 </ul>
 
 <input type="submit" id="editCalendar" value="Edit Calendar">

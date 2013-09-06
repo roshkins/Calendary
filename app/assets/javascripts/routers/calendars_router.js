@@ -41,7 +41,7 @@ Calendary.Routers.Calendars = Backbone.Router.extend({
 	},
 
 	eventsNew: function () {
-		var eventsNewView = new Calendary.Views.EventsNew();
+		var eventsNewView = new Calendary.Views.EventsForm();
 		this.swapCurrentView(eventsNewView);
 	}
 });

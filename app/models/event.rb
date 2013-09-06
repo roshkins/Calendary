@@ -21,6 +21,17 @@ class Event < ActiveRecord::Base
 	 :color, :description, :end_time, :location,
 	 :start_time, :title
 
+	 validates :start_time, :end_time, :presence => true
+
+	 validate :start_time_before_end_time
+
+	 def start_time_before_end_time
+	 	if (self.start_time > self.end_time)
+	 		self.errors[:base] << 
+	 		"Start time must be before end time."
+	 	end
+	 end
+
 	belongs_to :calendar, :dependent => :destroy
 
 	def has_update_permission?(user)

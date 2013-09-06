@@ -1,4 +1,6 @@
-<div class="agenda_event">
-	<h2><span style="color:<%= event.escape("color") %>;"><%= event.escape("title") %></span></h2>
-	<p><%= niceStart %> to <%= niceEnd %></p>
-</div>
+<li>
+	<div class="agenda_event">
+		<h2><span style="color:<%= event.escape("color") %>;"><%= event.escape("title") || "(no title)" %></span></h2>
+		<p><%= niceStart %> to <%= niceEnd %></p>
+	</div>
+</li>
