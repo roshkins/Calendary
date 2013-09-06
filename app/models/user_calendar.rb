@@ -19,6 +19,6 @@ class UserCalendar < ActiveRecord::Base
   validates :user_id, :uniqueness => {:scope => :calendar_id}
   validates :user_id, :calendar_id, :permission_setting, :presence => true
 
-  belongs_to :user, :dependent => :destroy
-  belongs_to :calendar, :dependent => :destroy
+  belongs_to :user
+  belongs_to :calendar
 end

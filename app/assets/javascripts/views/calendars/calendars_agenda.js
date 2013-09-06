@@ -16,6 +16,8 @@ Calendary.Views.CalendarsAgenda = Backbone.View.extend({
   deleteCalendar: function (event) {
   	$(event.currentTarget).attr("disabled", "disabled");
   	var that = this;
+    console.log(this.model);
+    debugger;
   	this.model.destroy({success: function() {
   		that.remove();
   		Backbone.history.navigate("calendar/new", {trigger: true});
