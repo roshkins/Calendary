@@ -9,7 +9,8 @@ Calendary::Application.routes.draw do
   resource :session, :only => [:new, :create, :destroy]
 
   resources :calendars, :only => [:create, :update, :show, :destroy] do
-  	resource :event, :only => [:create]
+  	# resource :event, :only => []
+  	resources :events, :only => [:create, :update, :destroy]
   end
-  	resources :events, :only => [:update, :show, :destroy]
+  	resources :events, :only => [:show]
 end

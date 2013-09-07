@@ -6,11 +6,16 @@ window.Calendary = {
   initialize: function() {
   	$calendarEl = $("#calendar");
     $indexEl = $("#calendar_index");
+    $toolbarTop = $("#toolbarTop");
 
     var current_user_calendars = Calendary.current_user.get("calendars");
     var calendarsIndex = new Calendary.Views.CalendarsIndex(
       {el: $indexEl, collection: current_user_calendars});
   	calendarsIndex.render(); 
+    var toolbarsTopView = new Calendary.Views.ToolbarsTop({
+      el: $toolbarTop
+    });
+    toolbarsTopView.render();
     new Calendary.Routers.Calendars($calendarEl);
   	Backbone.history.start();
 

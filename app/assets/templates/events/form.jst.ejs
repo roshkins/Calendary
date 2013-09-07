@@ -2,27 +2,27 @@
 	<label for="event_title">Title</label>
 	<br>
 	<input type="text" id="event_title" name="event[title]" 
-	value="<%= event.title %>">
+	value="<%= event.get("title") %>">
 	<br>
 	<label for="event_start_time">Start Date and Time</label>
 	<br>
 	<input type="datetime-local" id="event_start_time" name="event[start_time]"
-	 value="<%= (event.start_time) ? event.start_time.slice(0, -1) : "" %>">
+	 value="<%= (event.escape("start_time")) ? event.escape("start_time").slice(0, -1) : "" %>">
 	<br>
 	<label for="event_end_time"></label>
 	<br>
 	<input type="datetime-local" id="event_end_time" name="event[end_time]" 
-	value="<%= (event.end_time) ? event.end_time.slice(0, -1) : "" %>">
+	value="<%= event.escape("end_time") ? event.escape("end_time").slice(0, -1) : "" %>">
 	<br>
 	<input type="hidden" name="event[all_day]" value="false">
 	<label for="event_all_day">All day?</label>
 	<input type="checkbox" id="event_all_day" name="event[all_day]" value="true" 
-	"<%= event.all_day ? 'checked=checked' : "" %>">
+	"<%= event.escape("all_day") ? 'checked=checked' : "" %>">
 	<br>
 	<label for="event_location">Where</label>
 	<br>
 	<input type="text" id="event_location" name="event[location]" 
-	value="<%= event.location %>">
+	value="<%= event.escape("location") %>">
 	<br>
 	Select Calendar to add to
 :	<select name="event[calendar_id]">
@@ -35,7 +35,7 @@
 	<label for="event_description">Description</label>
 	<br>
 	<textarea id="event_description" 
-	name="event[description]"><%= event.description %></textarea>
+	name="event[description]"><%= event.escape("description") %></textarea>
 	<br>
 
 	<script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js">
@@ -48,7 +48,7 @@
 	<label for="event_color">Event Color</label>
 	<br>
 	<input type="color" id="event_color" name="event[color]"
-	value="<%= event.color || "#B1C3FF" %>">
+	value="<%= event.escape("color") || "#B1C3FF" %>">
 	<br>
 
 	<!-- /* @TODO: 

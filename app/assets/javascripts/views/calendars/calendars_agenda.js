@@ -7,6 +7,10 @@ Calendary.Views.CalendarsAgenda = Backbone.View.extend({
   	"click #editCalendar": "editCalendar"
   },
 
+  initialize: function() {
+    this.listenTo(this.model.get("events"), "all", this.render);
+  },
+
   render: function() {
     //this.model.get("events").sort();
   	var content = this.template({calendar: this.model });

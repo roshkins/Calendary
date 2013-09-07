@@ -4,7 +4,7 @@ Calendary.Collections.Events = Backbone.Collection.extend({
 		this.calendar_id = cal_id;
 	},
 	url: function () {
-		return "calendars/" + this.calendar_id + "/event";
+		return "calendars/" + this.calendar_id + "/events";
 	},
 	comparator: function (event1, event2) {
 						var date1 = new Date(event1.get("start_time"));
