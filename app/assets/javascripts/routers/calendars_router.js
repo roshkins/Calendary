@@ -21,7 +21,6 @@ Calendary.Routers.Calendars = Backbone.Router.extend({
 	},
 
 	agenda: function (id) {
-		debugger;
 		var selectedCalendar = Calendary.current_user.get("calendars").get(id);
 		var agendaView = new Calendary.Views.CalendarsAgenda(
 			{model: selectedCalendar });

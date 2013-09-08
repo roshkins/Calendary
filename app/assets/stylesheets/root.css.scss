@@ -36,3 +36,16 @@ html, body {
 .login {
 	margin:2px;
 }
+
+#calendar_index {
+    float:left;
+    display: block;
+    width: 20%;
+    border: solid 1px black;
+    position: relative;
+}
+
+#calendar {
+    display: block;
+    float:left;
+}

@@ -7,7 +7,6 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 	}, 
 	render: function () {
 		this.model = this.model || new Calendary.Models.Event();
-		debugger;
 		var content = this.template({
 				event: this.model
 			});
@@ -54,7 +53,6 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 			var newCal = Calendary.current_user.
 			get("calendars").
 			get(parseInt(this.model.get("calendar_id"))).get("events");
-			 debugger;
 			this.collection.remove(this.model);
 			newCal.add(this.model);
 			this.model.save(null, options);

@@ -40,3 +40,4 @@
 
 * Did you forget a new?
 * Sub-inheritance as_json: http://stackoverflow.com/questions/4443218/ror-nested-include-to-include-sub-resources-in-to-xml-to-json
+* To move a model from one collection to another, you must REMOVE from the first one THEN ADD it to the SECOND ONE. (DO NOT DO IT THE OTHER WAY AROUND. IT'S BUGGY FOR SOME REASON.)

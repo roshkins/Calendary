@@ -28,7 +28,9 @@
 :	<select name="event[calendar_id]">
 	<% Calendary.current_user.get("calendars").each(function(calendar){ %>
 		<option 
-		value="<%= calendar.id %>"><%= calendar.escape("title") %></option>
+		value="<%= calendar.id %>"
+		<%= (event.get("calendar_id")) ? ((calendar.id == event.get("calendar_id")) ? "selected" : "" ) : "" %>
+		><%= calendar.escape("title") %></option>
 		<% }); %>
 	</select>
 	<br>
