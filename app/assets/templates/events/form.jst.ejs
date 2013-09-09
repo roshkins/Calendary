@@ -9,7 +9,7 @@
 	<input type="datetime-local" id="event_start_time" name="event[start_time]"
 	 value="<%= (event.escape("start_time")) ? event.escape("start_time").slice(0, -1) : "" %>">
 	<br>
-	<label for="event_end_time"></label>
+	<label for="event_end_time">End Date and Time</label>
 	<br>
 	<input type="datetime-local" id="event_end_time" name="event[end_time]" 
 	value="<%= event.escape("end_time") ? event.escape("end_time").slice(0, -1) : "" %>">

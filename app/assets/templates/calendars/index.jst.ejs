@@ -1,12 +1,13 @@
-Choose or create your calendar:
+<button id="newEvent">Create Event!</button>
+<br>
+Choose or create your calendar: <br>
 <select id="calendar_chooser">
 	<option>Choose an option:</option>
 <% calendars.each(function(calendar){ %>
-	<option value="<%= calendar.id %>"><%= calendar.escape("title") %>
+	<option value="<%= calendar.id %>" style="background-color: <%= calendar.escape("color") %>;"><%= calendar.escape("title") %>
 	</option>
 	<% }); %>
 	<option disabled="disabled">----------------</option>
 	<option value="new">New Calendar</option>
 </select>
 
-<button id="newEvent">Create Event!</button>

@@ -15,7 +15,9 @@ html, body {
 	font-size: 18pt;
 }
 
-
+h1, h2, h3, h4, h5, h6 {
+    margin: 0px;
+}
 
 .header li {
 	display: inline-block;
@@ -37,15 +39,35 @@ html, body {
 	margin:2px;
 }
 
+ul#agendaList {
+    margin: 0px;
+}
+
 #calendar_index {
     float:left;
     display: block;
     width: 20%;
-    border: solid 1px black;
     position: relative;
 }
 
 #calendar {
     display: block;
     float:left;
+    width:75%;
+}
+
+#newEvent {
+    background-color: #C3E2FF;
+    display: inline-block;
+    border: 0px;
+    border-radius: 3px;
+    font-size: 18pt;
+}
+#newEvent:hover {
+    background-color: #AED7FF;
+}
+
+td {
+  width:200px
+    
 }

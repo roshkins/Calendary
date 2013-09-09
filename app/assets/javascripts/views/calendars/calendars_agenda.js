@@ -24,6 +24,9 @@ Calendary.Views.CalendarsAgenda = Backbone.View.extend({
   },
 
   deleteCalendar: function (event) {
+    if (!confirm("Are you sure you want to delete this calendar?")){
+      return false;
+    }
   	$(event.currentTarget).attr("disabled", "disabled");
   	var that = this;
     console.log(this.model);
