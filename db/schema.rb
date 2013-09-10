@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(:version => 20130904185021) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.time     "start_time"
+    t.date     "start_date"
+    t.time     "end_time"
+    t.date     "end_date"
     t.boolean  "all_day"
     t.string   "location"
     t.integer  "calendar_id"

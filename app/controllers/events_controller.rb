@@ -9,10 +9,12 @@ class EventsController < ApplicationController
 	def create
 		event = Event.new(params[:event])
 		calendar = @calendar
-		calendar.events << event
     event.all_day = (params[:event][:all_day] == "true")
     event.start_time = Chronic.parse(params[:event][:start_time])
+    event.start_date = Chronic.parse(params[:event][:start_date])
     event.end_time = Chronic.parse(params[:event][:end_time])
+    event.end_date = Chronic.parse(params[:event][:end_date])
+    calendar.events << event
 		if event.save
 			render :json => event
 		else
@@ -25,7 +27,9 @@ class EventsController < ApplicationController
 		if event.update_attributes(params[:event])
       event.all_day = (params[:event][:all_day] == "true")
       event.start_time = Chronic.parse(params[:event][:start_time])
+      event.start_date = Chronic.parse(params[:event][:start_date])
       event.end_time = Chronic.parse(params[:event][:end_time])
+      event.end_date = Chronic.parse(params[:event][:end_date])
       render :json => event
 	  else
 			render :json => event.errors.full_messages * ", ", :status => :unprocessable_entity

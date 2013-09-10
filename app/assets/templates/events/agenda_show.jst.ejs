@@ -5,10 +5,18 @@
 					<span style="color:<%= event.escape("color") %>;"><%= event.escape("title") || "(no title)" %></span></a>
 			</h2>
 		</td>
-		<td>
-		<%= niceStart %> 
-		</td>
-		<td>
-		<%= niceEnd %>
-		</td>
+		<% if (event.escape("all_day") == "false") { %>
+			<td> <%= niceStartDate %> </td>
+			<td>
+			<%= niceStart %> 
+			</td>
+			<td>
+				<%= niceEndDate %>
+			</td>
+			<td>
+			<%= niceEnd %>
+			</td>
+		<%} else {%>
+			<td> All Day Event </td>
+		<% } %>
 </tr>

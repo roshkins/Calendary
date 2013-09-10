@@ -11,6 +11,9 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 				event: this.model
 			});
 		this.$el.html(content);
+		//this.$el.find("#event_start_time").timepicker();
+		//this.$el.find("#event_end_time").timepicker();
+		Calendary.setUpDatePair(this.$el.find.bind(this.$el));
 		return this;
 	},
 
@@ -59,12 +62,12 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 		}
 	},
 
-	blurEventStartTime: function (event) {
-		if($("#event_end_time").val() === "") {
-			var tempDate = new Date($("#event_start_time").val());
-			tempDate.setHours(tempDate.getHours() + 1);
-			$("#event_end_time").val(tempDate.toISOString().slice(0, -1));
-		}
-	}
+	// blurEventStartTime: function (event) {
+	// 	if($("#event_end_time").val() === "") {
+	// 		var tempDate = new Date($("#event_start_time").val());
+	// 		tempDate.setHours(tempDate.getHours() + 1);
+	// 		$("#event_end_time").val(tempDate.toISOString().slice(0, -1));
+	// 	}
+	// }
 
 });

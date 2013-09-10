@@ -3,17 +3,24 @@ Calendary.Views.EventsAgendaShow = Backbone.View.extend({
 
 	render: function () {
 		var niceStart = this.niceTime(new Date(this.model.escape("start_time")));
-		var niceEnd   = this.niceTime(new Date(this.model.escape("end_time")));
+		var niceStartDate = this.niceDate(new Date(this.model.escape("start_date")));
+		var niceEnd = this.niceTime(new Date(this.model.escape("end_time")));
+		var niceEndDate = this.niceDate(new Date(this.model.escape("end_date")));
 		var content = this.template({
 			event: this.model, 
 			niceStart: niceStart,
-			niceEnd: niceEnd
+			niceStartDate: niceStartDate,
+			niceEnd: niceEnd,
+			niceEndDate: niceEndDate
 		});
 		this.$el.html(content);
 		return this;
 	},
 
-	niceTime: function(dateObj) {
-		return dateObj.toLocaleString();
+	niceDate: function(dateObj){
+		return dateObj.toLocaleDateString();
+	},
+	niceTime: function(timeObj) {
+		return timeObj.toLocaleTimeString();
 	}
 });

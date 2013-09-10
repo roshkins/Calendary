@@ -1,73 +1,90 @@
-// Place all the styles related to the root controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 @import url(http://fonts.googleapis.com/css?family=Quattrocento);
-
+/* line 7, ../../app/assets/stylesheets/root.css.scss */
 html, body {
-	margin: 0px;
-	border: 0px;
-	padding: 0px;
-	height: 100%;
-	width: 100%;
-	background-color: #FFE8BE;
-	font-family: Quattrocento;
-	font-size: 18pt;
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: #FFE8BE;
+  font-family: Quattrocento;
+  font-size: 18pt;
 }
 
+/* line 18, ../../app/assets/stylesheets/root.css.scss */
 h1, h2, h3, h4, h5, h6 {
-    margin: 0px;
+  margin: 0px;
 }
 
+/* line 22, ../../app/assets/stylesheets/root.css.scss */
 .header li {
-	display: inline-block;
-	margin:2px;
+  display: inline-block;
+  margin: 2px;
 }
+
+/* line 26, ../../app/assets/stylesheets/root.css.scss */
 .header ul {
-	margin: 0px;
-	border: 0px;
-	padding: 0px;
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
 }
 
+/* line 32, ../../app/assets/stylesheets/root.css.scss */
 .header {
-	background-color: #FFD58A;
-	height: 20pt;
-	font-size: 18pt;
+  background-color: #FFD58A;
+  height: 20pt;
+  font-size: 18pt;
 }
 
+/* line 38, ../../app/assets/stylesheets/root.css.scss */
 .login {
-	margin:2px;
+  margin: 2px;
 }
 
+/* line 42, ../../app/assets/stylesheets/root.css.scss */
 ul#agendaList {
-    margin: 0px;
+  margin: 0px;
 }
 
+/* line 46, ../../app/assets/stylesheets/root.css.scss */
 #calendar_index {
-    float:left;
-    display: block;
-    width: 20%;
-    position: relative;
+  float: left;
+  display: block;
+  width: 20%;
+  position: relative;
 }
 
+/* line 53, ../../app/assets/stylesheets/root.css.scss */
 #calendar {
-    display: block;
-    float:left;
-    width:75%;
+  display: block;
+  float: left;
+  width: 75%;
 }
 
+/* line 59, ../../app/assets/stylesheets/root.css.scss */
 #newEvent {
-    background-color: #C3E2FF;
-    display: inline-block;
-    border: 0px;
-    border-radius: 3px;
-    font-size: 18pt;
-}
-#newEvent:hover {
-    background-color: #AED7FF;
+  background-color: #C3E2FF;
+  display: inline-block;
+  border: 0px;
+  border-radius: 3px;
+  font-size: 18pt;
 }
 
+/* line 66, ../../app/assets/stylesheets/root.css.scss */
+#newEvent:hover {
+  background-color: #AED7FF;
+}
+
+/* line 70, ../../app/assets/stylesheets/root.css.scss */
 td {
-  width:200px
-    
+  max-width: 200px;
+  overflow: hidden;
+  width: 200px;
+  height: 100px;
+  text-overflow: ellipsis;
+}
+
+/* line 76, ../../app/assets/stylesheets/root.css.scss */
+#calendar_chooser::selection {
+  background-color: red;
 }

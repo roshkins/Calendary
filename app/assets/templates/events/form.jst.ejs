@@ -4,16 +4,20 @@
 	<input type="text" id="event_title" name="event[title]" 
 	value="<%= event.get("title") %>">
 	<br>
-	<label for="event_start_time">Start Date and Time</label>
+
+	 <p class="datepair" data-language="javascript">
+	 <label for="event_start_date">Start Date</label>
+	 <input type="text" id="event_start_date" name="event[start_date]" class="date start" value="<%= event.get("start_date") ? (new Date(event.get("start_date"))).toLocaleDateString() : "" %>">
+	 <label for="event_start_time">Start Time</label>
+	 <input type="text" id="event_start_time" class="time start" name="event[start_time]" value="<%= event.get("start_time") ? (new Date(event.get("start_time"))).toLocaleTimeString() : "" %>">
 	<br>
-	<input type="datetime-local" id="event_start_time" name="event[start_time]"
-	 value="<%= (event.escape("start_time")) ? event.escape("start_time").slice(0, -1) : "" %>">
-	<br>
-	<label for="event_end_time">End Date and Time</label>
-	<br>
-	<input type="datetime-local" id="event_end_time" name="event[end_time]" 
-	value="<%= event.escape("end_time") ? event.escape("end_time").slice(0, -1) : "" %>">
-	<br>
+	<label for="event_end_date">End date:</label>
+		 <input type="text" id="event_end_date" name="event[end_date]" class="date end" value="<%= event.get("end_date") ? (new Date(event.get("end_date"))).toLocaleDateString() : "" %>">
+		 <label for="event_end_time">End Time:</label>
+	 <input type="text" id="event_end_time" class="time end" name="event[end_time]" value="<%= event.get("end_time") ? (new Date(event.get("end_time"))).toLocaleTimeString() : "" %>">
+	 <label for="event_end_time">(try entering the end time first!)</label>
+	 </p>
+
 	<input type="hidden" name="event[all_day]" value="false">
 	<label for="event_all_day">All day?</label>
 	<input type="checkbox" id="event_all_day" name="event[all_day]" value="true" 

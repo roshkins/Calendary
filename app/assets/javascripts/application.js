@@ -14,8 +14,11 @@
 //= require jquery_ujs
 //= require underscore
 //= require jquery.serializeJSON.min
+//= require jquery.timepicker.min
+//= require jquery-ui-1.10.3.custom.min
 //= require backbone
 //= require calendary
+//= require datepair
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
