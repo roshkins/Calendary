@@ -14,7 +14,13 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 
 	innerViews: [],
 	secondRender: function () {
+		if(this.innerViews.length > 0) {
+		_(this.innerViews).each(function (innerView) {
+			innerView.remove();
+		});
+		}
 		var that = this;
+		var eventsAtTime = {};
 		this.collection.each(function (event) {
 			var eventView = new Calendary.Views.EventsDailyShow({
 				model: event
@@ -28,10 +34,13 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 			var numEventsAtSameTimeSlot = that.collection.filter(function (eventToCompare) {
 				return startTime.getHours() === (new Date(eventToCompare.get("start_time"))).getHours();
 			}).length;
-			eventEl.width((hourElm.width() - 20) / numEventsAtSameTimeSlot);
+			eventsAtTime[startTime.getHours()] = eventsAtTime[startTime.getHours()] || 0;
+			var elWidth = (hourElm.width() - 20) / numEventsAtSameTimeSlot;
+			eventEl.width(elWidth);
 			eventEl.css('top', hourElm.offset().top);
-			eventEl.css('left', hourElm.offset().left);
+			eventEl.css('left', hourElm.offset().left + elWidth * eventsAtTime[startTime.getHours()] );
 			that.$el.append(eventEl);
+			eventsAtTime[startTime.getHours()]++;
 		});
 	},
 
