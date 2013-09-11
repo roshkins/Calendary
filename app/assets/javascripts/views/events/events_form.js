@@ -28,6 +28,7 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 		event.preventDefault();
 		formData = $("#event_form").serializeJSON();
 
+		
 
 		this.collection = Calendary.current_user.
 		get("calendars").
