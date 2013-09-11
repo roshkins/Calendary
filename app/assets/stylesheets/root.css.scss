@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Quattrocento);
 /* line 7, ../../app/assets/stylesheets/root.css.scss */
+/* line 3, ../../app/assets/stylesheets/root.css.scss */
 html, body {
   margin: 0px;
   border: 0px;
@@ -12,16 +13,19 @@ html, body {
 }
 
 /* line 18, ../../app/assets/stylesheets/root.css.scss */
+/* line 15, ../../app/assets/stylesheets/root.css.scss */
 h1, h2, h3, h4, h5, h6 {
   margin: 0px;
 }
 
 /* line 22, ../../app/assets/stylesheets/root.css.scss */
+/* line 20, ../../app/assets/stylesheets/root.css.scss */
 .header li {
   display: inline-block;
   margin: 2px;
 }
 
+/* line 26, ../../app/assets/stylesheets/root.css.scss */
 /* line 26, ../../app/assets/stylesheets/root.css.scss */
 .header ul {
   margin: 0px;
@@ -30,6 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* line 32, ../../app/assets/stylesheets/root.css.scss */
+/* line 33, ../../app/assets/stylesheets/root.css.scss */
 .header {
   background-color: #FFD58A;
   height: 20pt;
@@ -37,16 +42,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* line 38, ../../app/assets/stylesheets/root.css.scss */
+/* line 40, ../../app/assets/stylesheets/root.css.scss */
 .login {
   margin: 2px;
 }
 
 /* line 42, ../../app/assets/stylesheets/root.css.scss */
+/* line 45, ../../app/assets/stylesheets/root.css.scss */
 ul#agendaList {
   margin: 0px;
 }
 
 /* line 46, ../../app/assets/stylesheets/root.css.scss */
+/* line 50, ../../app/assets/stylesheets/root.css.scss */
 #calendar_index {
   float: left;
   display: block;
@@ -55,6 +63,7 @@ ul#agendaList {
 }
 
 /* line 53, ../../app/assets/stylesheets/root.css.scss */
+/* line 58, ../../app/assets/stylesheets/root.css.scss */
 #calendar {
   display: block;
   float: left;
@@ -62,6 +71,7 @@ ul#agendaList {
 }
 
 /* line 59, ../../app/assets/stylesheets/root.css.scss */
+/* line 65, ../../app/assets/stylesheets/root.css.scss */
 #newEvent {
   background-color: #C3E2FF;
   display: inline-block;
@@ -71,11 +81,13 @@ ul#agendaList {
 }
 
 /* line 66, ../../app/assets/stylesheets/root.css.scss */
+/* line 74, ../../app/assets/stylesheets/root.css.scss */
 #newEvent:hover {
   background-color: #AED7FF;
 }
 
 /* line 70, ../../app/assets/stylesheets/root.css.scss */
+/* line 79, ../../app/assets/stylesheets/root.css.scss */
 td {
   max-width: 200px;
   overflow: hidden;
@@ -85,6 +97,35 @@ td {
 }
 
 /* line 76, ../../app/assets/stylesheets/root.css.scss */
+/* line 88, ../../app/assets/stylesheets/root.css.scss */
 #calendar_chooser::selection {
   background-color: red;
+}
+
+/* line 93, ../../app/assets/stylesheets/root.css.scss */
+.hourRow {
+  width: 100%;
+  max-height: 2px;
+}
+
+/* line 99, ../../app/assets/stylesheets/root.css.scss */
+tr {
+  max-height: 102px;
+}
+
+/* line 103, ../../app/assets/stylesheets/root.css.scss */
+table {
+  border-collapse: collapse;
+}
+
+/* line 107, ../../app/assets/stylesheets/root.css.scss */
+tr:nth-child(odd) .hourRow {
+  background-color: #C6D3FF;
+  opacity: .7;
+}
+
+/* line 112, ../../app/assets/stylesheets/root.css.scss */
+tr:nth-child(even) .hourRow {
+  background-color: #8592BF;
+  opacity: .65;
 }

@@ -43,13 +43,10 @@
 	<textarea id="event_description" 
 	name="event[description]"><%= event.escape("description") %></textarea>
 	<br>
+<script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js" id="filepickerJS"></script>
 
-	<script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js">
-	</script>
-	<input type="filepicker-dragdrop" 
-	data-fp-apikey="AZMO1sQTmTEKZLg2IKSOAz" 
-	data-fp-mimetypes="*/*" id="attachment" data-fp-container="modal"
-	onchange="event.fpfile.url">
+
+<input type="filepicker-dragdrop" data-fp-apikey="AZMO1sQTmTEKZLg2IKSOAz" data-fp-mimetypes="*/*" data-fp-container="modal" onchange="event.fpfile.url" id="attachment">
 
 	<label for="event_color">Event Color</label>
 	<br>

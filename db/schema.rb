@@ -23,18 +23,16 @@ ActiveRecord::Schema.define(:version => 20130904185021) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
-    t.time     "start_time"
-    t.date     "start_date"
-    t.time     "end_time"
-    t.date     "end_date"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
     t.boolean  "all_day"
     t.string   "location"
     t.integer  "calendar_id"
     t.text     "description"
     t.string   "attachment"
     t.string   "color"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   add_index "events", ["calendar_id"], :name => "index_events_on_calendar_id"

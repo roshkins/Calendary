@@ -16,7 +16,7 @@ window.Calendary = {
       el: $toolbarTop
     });
     toolbarsTopView.render();
-    new Calendary.Routers.Calendars($calendarEl);
+    new Calendary.Routers.Calendars($calendarEl, toolbarsTopView);
   	Backbone.history.start();
 
     if (Backbone.history.fragment == "") {

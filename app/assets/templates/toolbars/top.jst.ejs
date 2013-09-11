@@ -1,1 +1,5 @@
-Agenda | Weekly | Monthly
+<% if (calendar) { %>
+<a href="#calendar/<%= calendar.id %>/agenda">Agenda </a> | <a href="#calendar/<%= calendar.id %>/daily"> daily </a> | Weekly | Monthly
+<% } else { %>
+Please click on a calendar.
+<% } %>

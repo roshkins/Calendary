@@ -17,6 +17,7 @@
 //= require jquery.timepicker.min
 //= require jquery-ui-1.10.3.custom.min
 //= require backbone
+//= require sugar.min
 //= require calendary
 //= require datepair
 //= require_tree ../templates

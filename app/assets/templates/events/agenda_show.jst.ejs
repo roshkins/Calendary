@@ -18,5 +18,10 @@
 			</td>
 		<%} else {%>
 			<td> All Day Event </td>
+			<td> <%= niceStartDate %> </td>
+			<td> <%= niceEndDate %> </td>
 		<% } %>
+		<td>
+			<button id="delete_event">Delete Event</button>
+		</td>
 </tr>

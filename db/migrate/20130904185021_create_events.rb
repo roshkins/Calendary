@@ -2,10 +2,8 @@ class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
       t.string :title
-      t.time :start_time
-      t.date :start_date
-      t.time :end_time
-      t.date :end_date
+      t.datetime :start_datetime
+      t.datetime :end_datetime
       t.boolean :all_day
       t.string :location
       t.integer :calendar_id

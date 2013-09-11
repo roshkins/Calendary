@@ -3,16 +3,15 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 	events: {
 		"change #attachment": "attachment",
 		"submit #event_form": "submitEventForm",
-		"blur #event_start_time": "blurEventStartTime"
 	}, 
 	render: function () {
+		var emptyEvent = new Calendary.Models.Event();
+		emptyEvent.set({calendar_id: Calendary.selectedCalendar.id});
 		this.model = this.model || new Calendary.Models.Event();
 		var content = this.template({
 				event: this.model
 			});
 		this.$el.html(content);
-		//this.$el.find("#event_start_time").timepicker();
-		//this.$el.find("#event_end_time").timepicker();
 		Calendary.setUpDatePair(this.$el.find.bind(this.$el));
 		return this;
 	},
@@ -28,10 +27,12 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 	submitEventForm: function (event) {
 		event.preventDefault();
 		formData = $("#event_form").serializeJSON();
+
+
 		this.collection = Calendary.current_user.
 		get("calendars").
 		get(parseInt(formData.event.calendar_id)).get("events");
-		console.log(this.collection);
+
 		var that = this;
 		$("#submit_button").attr("disabled", "disabled");
 		var reenable = function () {
@@ -61,13 +62,5 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 			this.model.save(null, options);
 		}
 	},
-
-	// blurEventStartTime: function (event) {
-	// 	if($("#event_end_time").val() === "") {
-	// 		var tempDate = new Date($("#event_start_time").val());
-	// 		tempDate.setHours(tempDate.getHours() + 1);
-	// 		$("#event_end_time").val(tempDate.toISOString().slice(0, -1));
-	// 	}
-	// }
 
 });
