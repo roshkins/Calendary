@@ -12,6 +12,8 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 				event: this.model
 			});
 		this.$el.html(content);
+		this.$("#event_location").width();
+		autocomplete = new google.maps.places.Autocomplete(this.$("#event_location")[0]);
 		Calendary.setUpDatePair(this.$el.find.bind(this.$el));
 		return this;
 	},

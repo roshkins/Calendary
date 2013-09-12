@@ -6,6 +6,6 @@ Calendary.Models.Event = Backbone.Model.extend({
 	full_end_datetime: function () {
 		var fullDate = Date.create(this.get("end_datetime"));
 		return fullDate;
-	},
+	}
 
 });

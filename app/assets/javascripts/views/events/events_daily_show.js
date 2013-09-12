@@ -14,6 +14,7 @@ Calendary.Views.EventsDailyShow = Backbone.View.extend({
 		return this;
 	},
 	editEvent: function () {
+		console.log("EditEvent");
 		Backbone.history.navigate("calendar/" + this.model.get("calendar_id") + "/events/" + this.model.id + "/edit", {trigger: true});
 	},
 

@@ -1,8 +1,8 @@
 <h1> Daily View </h1>
-
+<h2> <%= (new Date()).toLocaleDateString() %> </h2>
 <table class="dailyCalendar">
 <tr>
-	<th>Event</th>
+	<th>Time</th><th>Event</th>
 </tr>
 <% _(24).times (function (hourNum) {%>
 	<tr>

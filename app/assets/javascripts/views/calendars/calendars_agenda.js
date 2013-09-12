@@ -16,7 +16,13 @@ Calendary.Views.CalendarsAgenda = Backbone.View.extend({
   	var content = this.template({calendar: this.model });
   	this.$el.html(content);
     var that = this;
-    this.model.get("events").each(function (event) {
+    filteredEvents = this.model.get("events").filter( 
+      function (dateObj) {
+         var date = Date.create(dateObj.get("start_datetime"));
+         return date - (new Date()).reset() > 0; //Date is after today.
+      }
+      );
+    filteredEvents.each(function (event) {
       var agendaItem = new Calendary.Views.EventsAgendaShow({model: event});
       that.$("#agendaList").append(agendaItem.render().$el);
     });

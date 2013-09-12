@@ -10,8 +10,8 @@ class EventsController < ApplicationController
 		event = Event.new(params[:event])
 		calendar = @calendar
     event.all_day = (params[:event][:all_day] == "true")
-    event.start_datetime = Chronic.parse(params[:start_date] + " " + params[:start_time])
-    event.end_datetime = Chronic.parse(params[:end_date] + " " + params[:end_time])
+    event.start_datetime = Chronic.parse(params[:start_datetime]) || Chronic.parse(params[:start_date] + " " + params[:start_time])
+    event.end_datetime = Chronic.parse(params[:end_datetime]) || Chronic.parse(params[:end_date] + " " + params[:end_time])
     calendar.events << event
 		if event.save
 			render :json => event
@@ -24,8 +24,8 @@ class EventsController < ApplicationController
     event = @event
 		if event.update_attributes(params[:event])
       event.all_day = (params[:event][:all_day] == "true")
-      event.start_datetime = Chronic.parse(params[:start_date] + " " + params[:start_time])
-      event.end_datetime = Chronic.parse(params[:end_date] + " " + params[:end_time])
+      event.start_datetime = Chronic.parse(params[:start_datetime]) || Chronic.parse(params[:start_date] + " " + params[:start_time])
+      event.end_datetime = Chronic.parse(params[:end_datetime]) || Chronic.parse(params[:end_date] + " " + params[:end_time])
       render :json => event
 	  else
 			render :json => event.errors.full_messages * ", ", :status => :unprocessable_entity

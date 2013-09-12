@@ -12,8 +12,8 @@ Calendary.Collections.Events = Backbone.Collection.extend({
 	// 	return stuff;
 	// },
 	comparator: function (event1, event2) {
-						var date1 = new Date(event1.get("start_time"));
-						var date2 = new Date(event2.get("start_time"));
+						var date1 = Date.create(event1.get("start_datetime"));
+						var date2 = Date.create(event2.get("start_datetime"));
 						var num = -(date2 - date1)/Math.abs(date2 - date1);
 						return isNaN(num) ? 0 : num;
     }

@@ -6,10 +6,10 @@ Calendary.Views.EventsAgendaShow = Backbone.View.extend({
 	},
 
 	render: function () {
-		var niceStart = this.niceTime(Date.create(this.model.escape("start_time")));
-		var niceStartDate = this.niceDate(Date.create(this.model.escape("start_date")));
-		var niceEnd = this.niceTime(Date.create(this.model.escape("end_time")));
-		var niceEndDate = this.niceDate(Date.create(this.model.escape("end_date")));
+		var niceStart = this.niceTime(Date.create(this.model.escape("start_datetime")));
+		var niceStartDate = this.niceDate(Date.create(this.model.escape("start_datetime")));
+		var niceEnd = this.niceTime(Date.create(this.model.escape("end_datetime")));
+		var niceEndDate = this.niceDate(Date.create(this.model.escape("end_datetime")));
 		var content = this.template({
 			event: this.model, 
 			niceStart: niceStart,

@@ -7,13 +7,13 @@
 
 	 <p class="datepair" data-language="javascript">
 	 <label for="event_start_date">Start Date</label>
-	 <input type="text" id="event_start_date" name="event[start_date]" class="date start" value="<%= event.get("start_date") ? (Date.create(event.get("start_date"))).toLocaleDateString() : "" %>">
+	 <input type="text" id="event_start_date" name="event[start_date]" class="date start" value="<%= event.get("start_date") ? (Date.create(event.get("start_date"))).toLocaleDateString() : (new Date()).toLocaleDateString() %>">
 	 <label for="event_start_time">Start Time</label>
-	 <input type="text" id="event_start_time" class="time start" name="event[start_time]" value="<%= event.get("start_time") ? (Date.create(event.get("start_time"))).toLocaleTimeString() : "" %>">
+	 <input type="text" id="event_start_time" class="time start" name="event[start_time]" value="<%= event.get("start_time") ? (Date.create(event.get("start_time"))).toLocaleTimeString() : (new Date()).toLocaleTimeString() %>">
 	<br>
-	<label for="event_end_date">End date:</label>
+	<label for="event_end_date">End date</label>
 		 <input type="text" id="event_end_date" name="event[end_date]" class="date end" value="<%= event.get("end_date") ? (Date.create(event.get("end_date"))).toLocaleDateString() : "" %>">
-		 <label for="event_end_time">End Time:</label>
+		 <label for="event_end_time">End Time</label>
 	 <input type="text" id="event_end_time" class="time end" name="event[end_time]" value="<%= event.get("end_time") ? (Date.create(event.get("end_time"))).toLocaleTimeString() : "" %>">
 	 <label for="event_end_time">(try entering the end time first!)</label>
 	 </p>
@@ -27,6 +27,7 @@
 	<br>
 	<input type="text" id="event_location" name="event[location]" 
 	value="<%= event.escape("location") %>">
+	<img src="/assets/powered-by-google-on-non-white.png">
 	<br>
 	Select Calendar to add to
 :	<select name="event[calendar_id]">

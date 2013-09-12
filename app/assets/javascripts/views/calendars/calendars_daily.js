@@ -2,9 +2,9 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 	template: JST['calendars/daily'],
 
 	events: {
-		"mouseDown .hourRow": "quickEventStart", 
-		"mouseMove .hourRow": "quickEventRender",
-		"mouseUp   .hourRow": "quickEventStop"
+		"mousedown .hourRow": "quickEventStart", 
+		"mousemove .hourRow": "quickEventRender",
+		"mouseup": "quickEventStop"
 	},
 
 	render: function () {
@@ -19,31 +19,30 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 
 	innerViews: [],
 	secondRender: function () {
-		if(this.innerViews.length > 0) {
-		_(this.innerViews).each(function (innerView) {
-			innerView.remove();
-		});
+        if(this.innerViews.length > 0) {
+            _(this.innerViews).each(function (innerView) {
+                innerView.remove();
+            });
 		}
 		var that = this;
 		var eventsAtTime = [];
 		this.collection.each(function (event) {
-			var startTime = Date.create(event.get("start_time"));
-			var endTime   = Date.create(event.get("end_time"));
+			var startTime = Date.create(event.get("start_time") || event.get("start_datetime"));
+			var endTime   = Date.create(event.get("end_time") || event.get("end_datetime"));
 			for (var i = startTime.getHours(); i <= endTime.getHours(); i++) {
 					eventsAtTime[i] = eventsAtTime[i] || 0;
 					eventsAtTime[i]++;
 				}
 		});
-
 		var runningEventsAtTime = [];
 	
 		this.collection.each(function (event) {
 			var eventView = new Calendary.Views.EventsDailyShow({
 				model: event
 			});
-			var startTime = Date.create(event.get("start_time"));
-			var endTime   = Date.create(event.get("end_time"));
-			var hourElm = that.$("#hour" + (startTime.getHours()));
+			var startTime = Date.create(event.get("start_time") || event.get("start_datetime"));
+			var endTime   = Date.create(event.get("end_time") || event.get("end_datetime"));
+			var hourElm = that.$("#hour" + (startTime.getHours() || 24));
 			eventView.render(hourElm.height());
 			var eventEl = eventView.$el;
 			that.innerViews.push(eventView);
@@ -82,11 +81,70 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 		$(window).off('resize');
 	},
 
-	tempEvent: new Calendary.Models.Event(),
+	tempEvent: null,
+	tempEventView: null,
+	$tempEventEl: null,
+
+	currentDate: new Date(),
+
+	isMouseDown: false,
+
+	positionEl: function($elWithLocation, $elToPosition) {
+			$elToPosition.css('position', 'absolute');
+			$elToPosition.width($elWithLocation.width() - 10);
+			$elToPosition.css('top', $elWithLocation.offset().top);
+			$elToPosition.css('left', $elWithLocation.offset().left);
+	},
 
 	quickEventStart: function (eventHandler) {
-		var hourNum = eventHandler.currentTarget().attr('id').match(/hour(\d+)/)[1];
-		this.tempEvent = new Calendary.Models.Event();
+		eventHandler.preventDefault();
+		if(eventHandler.which === 1) {
+			var hourNum = $(eventHandler.currentTarget).attr('id').match(/hour(\d+)/)[1];
+			this.tempEvent = new Calendary.Models.Event();
+			var startDateTime = this.currentDate.clone();
+			startDateTime.setHours(parseInt(hourNum), 0, 0, 0);
+			var endDateTime = this.currentDate.clone();
+			endDateTime.setHours(parseInt(hourNum) + 1, 0, 0, 0);
+			this.tempEvent.set({
+				"start_datetime": startDateTime,
+				"end_datetime": endDateTime,
+				"color": "#F5F5DC",
+                "title": "(no title)",
+                "calendar_id": Calendary.selectedCalendar.id,
+			});
+			this.isMouseDown = true;
+			this.tempEventView = new Calendary.Views.EventsDailyShow({model: this.tempEvent});
+			var $tempEl = this.tempEventView.render($(eventHandler.currentTarget).height()).$el;
+			this.positionEl($(eventHandler.currentTarget), $tempEl);
+			this.$el.append($tempEl);
+			this.$tempEventEl = $tempEl;
+		}
 
+	},
+	quickEventRender: function (eventHandler) {
+		if(this.isMouseDown) {
+			var hourNum = parseInt($(eventHandler.currentTarget).
+				attr('id').match(/hour(\d+)/)[1]);
+			var endDateTime = this.currentDate.clone();
+			endDateTime.setHours(parseInt(hourNum) + 1, 0, 0, 0);
+			this.tempEvent.set({"end_datetime": endDateTime });
+			this.tempEventView.render($(eventHandler.currentTarget).
+				height());
+		}
+	},
+	quickEventStop: function (eventHandler) {
+		this.isMouseDown = false;
+		this.tempEventView.remove();
+        // console.log(this.tempEvent);
+        var that = this;
+        this.collection.create(this.tempEvent, {
+        	success: function () {
+        		that.secondRender();
+        	},
+        	error: function (model, xhr) {
+        		alert(xhr.responseText);
+        	}
+        });
+		
 	},
 });
