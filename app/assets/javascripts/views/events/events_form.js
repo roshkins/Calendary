@@ -47,8 +47,8 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 				formData.event.calendar_id + "/agenda/", {trigger: true});
 			}, error: 
 			function (model, xhr) {
-				var div = $("<div id='errors'></div>").html(xhr.responseText);
-				that.$el.prepend(div);
+				var $div = $("<div id='errors'></div>").html(xhr.responseText);
+				that.$el.prepend($div);
 				reenable();
 			}
 		};
@@ -68,11 +68,13 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 	},
 
 	deleteEvent: function () {
-		this.model.destroy({success: function () {
-				Backbone.history.navigate("/calendar/" +
-				Calendary.selectedCalendar.id +
-				"/agenda", {trigger: true});
-			},
-		})	
+		if(confirm("Do you want to delete this event?")){
+			this.model.destroy({success: function () {
+					Backbone.history.navigate("/calendar/" +
+					Calendary.selectedCalendar.id +
+					"/agenda", {trigger: true});
+				},
+			});
+		}	
 	},
 });

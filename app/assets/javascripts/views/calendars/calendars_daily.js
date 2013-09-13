@@ -7,6 +7,7 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 		"mouseup": "quickEventStop",
 		"click #prev_day": "prevDay",
 		"click #next_day": "nextDay",
+		"keypress": "quickEventStop",
 		// "drop .hourRow": "dropHourRow",
 	},
 
@@ -137,6 +138,10 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 			this.tempEvent.set({
 				"start_datetime": startDateTime,
 				"end_datetime": endDateTime,
+				"start_date": startDateTime.toLocaleDateString(),
+				"start_time": startDateTime.toLocaleTimeString(),
+				"end_date":   endDateTime.toLocaleDateString(),
+				"end_time":   endDateTime.addHours(1).toLocaleTimeString(),
 				"color": "#F5F5DC",
                 "title": "(no title)",
                 "calendar_id": Calendary.selectedCalendar.id,
@@ -164,11 +169,12 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 	quickEventStop: function (eventHandler) {
 		if (this.isMouseDown){
 			this.isMouseDown = false;
-			this.tempEventView.remove();
+		
 	        // console.log(this.tempEvent);
 	        var that = this;
 	        this.collection.create(this.tempEvent, {
 	        	success: function () {
+	        		that.tempEventView.remove();
 	        		that.secondRender();
 	        	},
 	        	error: function (model, xhr) {
