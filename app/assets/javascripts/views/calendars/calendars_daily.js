@@ -132,9 +132,10 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 			var hourNum = $(eventHandler.currentTarget).attr('id').match(/hour(\d+)/)[1];
 			this.tempEvent = new Calendary.Models.Event();
 			var startDateTime = this.currentDate.clone();
-			startDateTime.setHours(parseInt(hourNum), 0, 0, 0);
+			startDateTime.setHours(parseInt(hourNum) % 24, 0, 0, 0);
 			var endDateTime = this.currentDate.clone();
-			endDateTime.setHours(parseInt(hourNum) + 1, 0, 0, 0);
+			endDateTime.setHours((parseInt(hourNum) + 1) % 24, 0, 0, 0);
+			// debugger;
 			this.tempEvent.set({
 				"start_datetime": startDateTime,
 				"end_datetime": endDateTime,
@@ -153,14 +154,13 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 			this.$el.append($tempEl);
 			this.$tempEventEl = $tempEl;
 		}
-
 	},
 	quickEventRender: function (eventHandler) {
 		if(this.isMouseDown) {
 			var hourNum = parseInt($(eventHandler.currentTarget).
 				attr('id').match(/hour(\d+)/)[1]);
 			var endDateTime = this.currentDate.clone();
-			endDateTime.setHours(parseInt(hourNum) + 1, 0, 0, 0);
+			endDateTime.setHours((parseInt(hourNum) + 1) % 24, 0, 0, 0);
 			this.tempEvent.set({"end_datetime": endDateTime });
 			this.tempEventView.render($(eventHandler.currentTarget).
 				height());

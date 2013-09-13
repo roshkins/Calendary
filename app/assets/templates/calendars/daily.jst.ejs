@@ -10,7 +10,7 @@
 	<tr>
 		<td class="hourName">
 		<%=((hourNum + 1) % 12) || 12 %>
-		<% AMPMTime = ((hourNum + 2) / 12) %>
+		<% AMPMTime = ((hourNum + 2) / 12); %>
 		<%= ( AMPMTime > 1 && AMPMTime <= 2) ? "PM" : "AM" %></td> <td id="hour<%= hourNum + 1 %>" class="hourRow"></td>
 	</tr>
 <%}); %>

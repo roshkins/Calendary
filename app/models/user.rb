@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
     if plain_text =~ /\d/ && plain_text =~ /\w/
   	  self.password_digest = BCrypt::Password.create(plain_text)
     else
-      self.errors[:password] = "must contain one digit and one word character."
+      self.errors[:base] = "Password must contain one digit and one word character."
       self.password_digest = nil    
     end
   end
