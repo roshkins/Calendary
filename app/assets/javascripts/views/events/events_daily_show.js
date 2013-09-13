@@ -1,7 +1,7 @@
 Calendary.Views.EventsDailyShow = Backbone.View.extend({
 	template: JST['events/daily_show'],
 	events: {
-		"click": "editEvent",
+		"click h1": "editEvent",
 	},
 	className: "eventDaily",
 	render: function (theHeight) {
@@ -14,8 +14,7 @@ Calendary.Views.EventsDailyShow = Backbone.View.extend({
 		return this;
 	},
 	editEvent: function () {
-		console.log("EditEvent");
-		Backbone.history.navigate("calendar/" + this.model.get("calendar_id") + "/events/" + this.model.id + "/edit", {trigger: true});
+			Backbone.history.navigate("calendar/" + this.model.get("calendar_id") + "/events/" + this.model.id + "/edit", {trigger: true});
 	},
 
 });

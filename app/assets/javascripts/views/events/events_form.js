@@ -3,6 +3,7 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 	events: {
 		"change #attachment": "attachment",
 		"submit #event_form": "submitEventForm",
+		"click #delete_button": "deleteEvent",
 	}, 
 	render: function () {
 		var emptyEvent = new Calendary.Models.Event();
@@ -66,4 +67,12 @@ Calendary.Views.EventsForm = Backbone.View.extend({
 		}
 	},
 
+	deleteEvent: function () {
+		this.model.destroy({success: function () {
+				Backbone.history.navigate("/calendar/" +
+				Calendary.selectedCalendar.id +
+				"/agenda", {trigger: true});
+			},
+		})	
+	},
 });

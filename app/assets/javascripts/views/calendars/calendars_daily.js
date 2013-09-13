@@ -4,17 +4,33 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 	events: {
 		"mousedown .hourRow": "quickEventStart", 
 		"mousemove .hourRow": "quickEventRender",
-		"mouseup": "quickEventStop"
+		"mouseup": "quickEventStop",
+		// "drop .hourRow": "dropHourRow",
 	},
 
 	render: function () {
-		var content = this.template();
+		var content = this.template({currentlyShowingDate: (new Date())});
 		this.$el.html(content);
 		return this;
 	},
 
 	initialize: function () {
 		$(window).on('resize', this.secondRender.bind(this));
+		$(".hourRow").droppable({ drop: this.dropHourRow});
+	},
+
+	draggedEvent: null,
+
+	dropHourRow: function (eventHandler) {
+		console.log("dropped");
+		var hourNum = parseInt($(eventHandler.currentTarget).
+		attr('id').match(/hour(\d+)/)[1]);
+		var changeInHours = (hourNum - 1) - this.draggedEvent.get("start_datetime").getHours();
+		this.draggedEvent.set({
+			"start_datetime": this.draggedEvent.get("start_datetime").addHours(changeInHours),
+			"end_datetime"	: this.draggedEvent.get("start_datetime").addHours(changeInHours),
+		});
+		this.secondRender();
 	},
 
 	innerViews: [],
@@ -29,7 +45,7 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 		this.collection.each(function (event) {
 			var startTime = Date.create(event.get("start_time") || event.get("start_datetime"));
 			var endTime   = Date.create(event.get("end_time") || event.get("end_datetime"));
-			for (var i = startTime.getHours(); i <= endTime.getHours(); i++) {
+			for (var i = startTime.getHours(); i < endTime.getHours(); i++) {
 					eventsAtTime[i] = eventsAtTime[i] || 0;
 					eventsAtTime[i]++;
 				}
@@ -48,16 +64,23 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 			that.innerViews.push(eventView);
 			eventEl.css("position", "absolute");
 
-			var maxNumEvents = that.maxRange(startTime.getHours(), endTime.getHours(), eventsAtTime);
+			var maxNumEvents = that.maxRange(startTime.getHours(), endTime.getHours() - 1, eventsAtTime);
 			var elWidth = (hourElm.width() - 20) / maxNumEvents;
 			eventEl.width(elWidth);
 			
 			eventEl.css('top', hourElm.offset().top);
-			var maxNumRunningEvents = that.maxRange(startTime.getHours(), endTime.getHours(), runningEventsAtTime);
+			console.log(runningEventsAtTime);
+			var maxNumRunningEvents = that.maxRange(startTime.getHours(), endTime.getHours() - 1, runningEventsAtTime);
 
 			eventEl.css('left', hourElm.offset().left + elWidth * (maxNumRunningEvents));
-			runningEventsAtTime = that.mapRange(runningEventsAtTime, startTime.getHours(), endTime.getHours(), function(itm) {
+			runningEventsAtTime = that.mapRange(runningEventsAtTime, startTime.getHours() - 1, endTime.getHours() - 1, function(itm) {
 				return (itm) ? ++itm : 1;
+			});
+			eventEl.draggable({
+				axis: "y",
+				start: function (eventHandler) {
+					that.draggedEvent = event;
+				},
 			});
 			that.$el.append(eventEl);
 			
@@ -79,6 +102,7 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 			innerView.remove();
 		});
 		$(window).off('resize');
+		$(".hourRow").off('drop');
 	},
 
 	tempEvent: null,
@@ -133,18 +157,19 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 		}
 	},
 	quickEventStop: function (eventHandler) {
-		this.isMouseDown = false;
-		this.tempEventView.remove();
-        // console.log(this.tempEvent);
-        var that = this;
-        this.collection.create(this.tempEvent, {
-        	success: function () {
-        		that.secondRender();
-        	},
-        	error: function (model, xhr) {
-        		alert(xhr.responseText);
-        	}
-        });
-		
+		if (this.isMouseDown){
+			this.isMouseDown = false;
+			this.tempEventView.remove();
+	        // console.log(this.tempEvent);
+	        var that = this;
+	        this.collection.create(this.tempEvent, {
+	        	success: function () {
+	        		that.secondRender();
+	        	},
+	        	error: function (model, xhr) {
+	        		alert(xhr.responseText);
+	        	}
+	        });
+		}
 	},
 });
