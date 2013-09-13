@@ -1,7 +1,7 @@
 Calendary.Views.EventsDailyShow = Backbone.View.extend({
 	template: JST['events/daily_show'],
 	events: {
-		"click h1": "editEvent",
+		"click": "editEvent",
 	},
 	className: "eventDaily",
 	render: function (theHeight) {

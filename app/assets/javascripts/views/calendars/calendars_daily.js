@@ -5,11 +5,13 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 		"mousedown .hourRow": "quickEventStart", 
 		"mousemove .hourRow": "quickEventRender",
 		"mouseup": "quickEventStop",
+		"click #prev_day": "prevDay",
+		"click #next_day": "nextDay",
 		// "drop .hourRow": "dropHourRow",
 	},
 
 	render: function () {
-		var content = this.template({currentlyShowingDate: (new Date())});
+		var content = this.template({currentlyShowingDate: (this.currentDate)});
 		this.$el.html(content);
 		return this;
 	},
@@ -42,7 +44,10 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 		}
 		var that = this;
 		var eventsAtTime = [];
-		this.collection.each(function (event) {
+		var currentEvents = this.collection.filter(function (event) {
+			return Date.create(event.get("start_datetime")).toDateString() == that.currentDate.toDateString();
+		});
+		currentEvents.each(function (event) {
 			var startTime = Date.create(event.get("start_time") || event.get("start_datetime"));
 			var endTime   = Date.create(event.get("end_time") || event.get("end_datetime"));
 			for (var i = startTime.getHours(); i < endTime.getHours(); i++) {
@@ -52,7 +57,7 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 		});
 		var runningEventsAtTime = [];
 	
-		this.collection.each(function (event) {
+		currentEvents.each(function (event) {
 			var eventView = new Calendary.Views.EventsDailyShow({
 				model: event
 			});
@@ -76,12 +81,12 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 			runningEventsAtTime = that.mapRange(runningEventsAtTime, startTime.getHours() - 1, endTime.getHours() - 1, function(itm) {
 				return (itm) ? ++itm : 1;
 			});
-			eventEl.draggable({
-				axis: "y",
-				start: function (eventHandler) {
-					that.draggedEvent = event;
-				},
-			});
+			// eventEl.draggable({
+			// 	// axis: "y",
+			// 	start: function (eventHandler) {
+			// 		that.draggedEvent = event;
+			// 	},
+			// });
 			that.$el.append(eventEl);
 			
 		});
@@ -94,8 +99,8 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 		return array;
 	},
 	maxRange: function (startTimeInHours, endTimeInHours, eventsAtTime) {
-		current_events = eventsAtTime.slice(startTimeInHours, endTimeInHours + 1);
-		return current_events.max() || 0;
+		currentEvents = eventsAtTime.slice(startTimeInHours, endTimeInHours + 1);
+		return currentEvents.max() || 0;
 	},
 	leave: function () {
 		_(this.innerViews).each(function (innerView) {
@@ -171,5 +176,17 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 	        	}
 	        });
 		}
+	},
+
+	prevDay: function () {
+		this.currentDate.addDays(-1);
+		this.render();
+		this.secondRender();
+	},
+
+	nextDay: function () {
+		this.currentDate.addDays(1);
+		this.render();
+		this.secondRender();
 	},
 });
