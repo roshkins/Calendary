@@ -62,8 +62,8 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 			var eventView = new Calendary.Views.EventsDailyShow({
 				model: event
 			});
-			var startTime = Date.create(event.get("start_time") || event.get("start_datetime"));
-			var endTime   = Date.create(event.get("end_time") || event.get("end_datetime"));
+			var startTime = Date.create(/*event.get("start_time") ||*/ event.get("start_datetime"));
+			var endTime   = Date.create(/*event.get("end_time") ||*/ event.get("end_datetime"));
 			var hourElm = that.$("#hour" + (startTime.getHours() || 24));
 			eventView.render(hourElm.height());
 			var eventEl = eventView.$el;
@@ -75,7 +75,6 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 			eventEl.width(elWidth);
 			
 			eventEl.css('top', hourElm.offset().top);
-			console.log(runningEventsAtTime);
 			var maxNumRunningEvents = that.maxRange(startTime.getHours(), endTime.getHours() - 1, runningEventsAtTime);
 
 			eventEl.css('left', hourElm.offset().left + elWidth * (maxNumRunningEvents));
@@ -134,7 +133,8 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 			var startDateTime = this.currentDate.clone();
 			startDateTime.setHours(parseInt(hourNum) % 24, 0, 0, 0);
 			var endDateTime = this.currentDate.clone();
-			endDateTime.setHours((parseInt(hourNum) + 1) % 24, 0, 0, 0);
+			endDateTime.setHours((parseInt(hourNum) + 1) % 24 || 23, (parseInt(hourNum) + 1) % 24 === 0 ? 59 : 0, 0, 0);
+			console.log(endDateTime);
 			// debugger;
 			this.tempEvent.set({
 				"start_datetime": startDateTime,
@@ -142,7 +142,7 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 				"start_date": startDateTime.toLocaleDateString(),
 				"start_time": startDateTime.toLocaleTimeString(),
 				"end_date":   endDateTime.toLocaleDateString(),
-				"end_time":   endDateTime.addHours(1).toLocaleTimeString(),
+				"end_time":   endDateTime.toLocaleTimeString(),
 				"color": "#F5F5DC",
                 "title": "(no title)",
                 "calendar_id": Calendary.selectedCalendar.id,
@@ -160,7 +160,7 @@ Calendary.Views.CalendarsDaily = Backbone.View.extend({
 			var hourNum = parseInt($(eventHandler.currentTarget).
 				attr('id').match(/hour(\d+)/)[1]);
 			var endDateTime = this.currentDate.clone();
-			endDateTime.setHours((parseInt(hourNum) + 1) % 24, 0, 0, 0);
+			endDateTime.setHours((parseInt(hourNum) + 1) % 24 || 23, (parseInt(hourNum) + 1) % 24 === 0 ? 59 : 0, 0, 0);
 			this.tempEvent.set({"end_datetime": endDateTime });
 			this.tempEventView.render($(eventHandler.currentTarget).
 				height());

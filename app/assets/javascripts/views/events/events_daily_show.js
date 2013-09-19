@@ -17,4 +17,10 @@ Calendary.Views.EventsDailyShow = Backbone.View.extend({
 			Backbone.history.navigate("calendar/" + this.model.get("calendar_id") + "/events/" + this.model.id + "/edit", {trigger: true});
 	},
 
+	roundHours: function (dateTime) {
+		if (dateTime.getMinutes() >= 30) {
+			 
+		}
+	},
+
 });

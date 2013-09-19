@@ -34,9 +34,9 @@ class CalendarsController < ApplicationController
 			else
 		    render :json => calendar.errors.full_messages * ", "
 			end
-    else
-      render :json => "Permission denied.", :status => :forbidden
-    end
+    	else
+    	  render :json => "Permission denied.", :status => :forbidden
+   		end
 	end
 
 	def destroy
